@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web App</title>
+    <title>Web App - Root Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Submit Your Data</h1>
-        <form id="dataForm">
+        <h1>Submit Your Details</h1>
+        <form id="rootForm">
             <input type="text" id="name" placeholder="Enter your name" required>
             <input type="email" id="email" placeholder="Enter your email" required>
             <button type="submit">Submit</button>
         </form>
+
+        <h2>Submitted Data</h2>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+
         <p id="message"></p>
     </div>
     <script src="app.js"></script>
