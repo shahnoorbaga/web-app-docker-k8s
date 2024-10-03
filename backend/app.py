@@ -28,20 +28,30 @@ def submit_data():
     data = request.json
     name = data.get('name')
     email = data.get('email')
-    
+
     if not name or not email:
         return jsonify({"message": "Name and email are required"}), 400
-    
+
     # Insert data into SQL Server (Google Cloud SQL)
     cursor.execute('INSERT INTO submissions (name, email) VALUES (?, ?)', (name, email))
     conn.commit()
 
     return jsonify({"message": "Data submitted successfully"})
 
+@app.route('/data', methods=['GET'])
+def get_data():
+    # Fetch all submissions from SQL Server
+    cursor.execute('SELECT name, email FROM submissions')
+    rows = cursor.fetchall()
+
+    data = [{"name": row[0], "email": row[1]} for row in rows]
+
+    return jsonify(data)
+
 @app.route('/config', methods=['GET'])
 def get_config():
     return jsonify({
-        "backend_url": os.environ.get('BACKEND_URL', 'http://localhost:5000')
+        "backend_url": os.environ.get('BACKEND_URL')
     })
 
 if __name__ == '__main__':
