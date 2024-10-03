@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-backend
+  template:
+    metadata:
+      labels:
+        app: web-app-backend
+    spec:
+      containers:
+      - name: backend
+        image: gcr.io/shahnoor/web-app-backend:latest
+        imagePullPolicy: Always
+        env:
+          - name: SQL_SERVER_HOST
+            value: "34.74.254.9"
+          - name: SQL_SERVER_DB
+            value: "shahnoorappdb"
+          - name: SQL_SERVER_USER
+            value: "sqlserver"
+          - name: SQL_SERVER_PASSWORD
+            value: "admin"
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-frontend
+  template:
+    metadata:
+      labels:
+        app: web-app-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/shahnoor/web-app-frontend:latest
+        imagePullPolicy: Always
+        env:
+          - name: BACKEND_URL
+            value: "http://web-app-backend:5000"  # Set backend URL as an environment variable
+        ports:
+        - containerPort: 80
