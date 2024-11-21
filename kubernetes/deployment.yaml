@@ -70,7 +70,7 @@ spec:
   template:
     metadata:
       labels:
-        app: web-app
+        app: test-app
     spec:
       containers:
       - name: test
