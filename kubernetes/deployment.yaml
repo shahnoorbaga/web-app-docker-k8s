@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-app-backend
+  namespace: backend
 spec:
   replicas: 1
   selector:
@@ -16,6 +17,7 @@ spec:
       - name: backend
         image: gcr.io/shahnoor/web-app-backend:latest
         imagePullPolicy: Always
+        #image: backend:ica
         env:
           - name: SQL_SERVER_HOST
             value: "34.74.254.9"
@@ -33,6 +35,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-app-frontend
+  namespace: frontend
 spec:
   replicas: 1
   selector:
@@ -47,8 +50,30 @@ spec:
       - name: frontend
         image: gcr.io/shahnoor/web-app-frontend:latest
         imagePullPolicy: Always
+        #image: frontend:ica
         env:
           - name: BACKEND_URL
-            value: "http://web-app-backend:5000"  # Set backend URL as an environment variable
+            value: "http://web-app-backend.backend.svc.cluster.local:5000"  # Set backend URL as an environment variable
         ports:
         - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: test
+        image: gcr.io/shahnoor/test-app-test:latest
+        imagePullPolicy: Always
+        #image: testimage:ica
