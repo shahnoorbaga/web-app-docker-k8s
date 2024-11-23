@@ -1,6 +1,6 @@
 const backendUrl = "http://web-app-backend.backend.svc.cluster.local:5000"
 
-document.getElementById('dataForm').addEventListener('submit', async function (e) {
+document.getElementById('rootForm').addEventListener('submit', async function (e) {
     e.preventDefault();
     
     const name = document.getElementById('name').value;
