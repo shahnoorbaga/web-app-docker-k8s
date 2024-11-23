@@ -26,7 +26,7 @@ async function fetchData() {
     const data = await response.json();
 
     // Display each entry
-    const dataDisplay = document.getElementById('dataDisplay');
+    const dataDisplay = document.getElementById('dataTable');
     dataDisplay.innerHTML = ''; // Clear previous data
     data.forEach(entry => {
         const div = document.createElement('div');
