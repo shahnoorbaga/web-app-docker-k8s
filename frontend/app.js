@@ -1,4 +1,4 @@
-const backendUrl = "/api/"
+const backendUrl = "/api"
 
 document.getElementById('rootForm').addEventListener('submit', async function (e) {
     e.preventDefault();
