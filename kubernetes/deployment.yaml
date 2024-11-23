@@ -60,7 +60,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-app
+  name: test-app-test
   namespace: test
 spec:
   replicas: 1
