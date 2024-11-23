@@ -1,4 +1,4 @@
-const backendUrl = "http://web-app-backend.backend.svc.cluster.local:5000"
+const backendUrl = "/api/"
 
 document.getElementById('rootForm').addEventListener('submit', async function (e) {
     e.preventDefault();
