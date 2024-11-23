@@ -1,4 +1,4 @@
-const backendUrl = process.env.BACKEND_URL 
+const backendUrl = "http://web-app-backend.backend.svc.cluster.local:5000"
 
 document.getElementById('dataForm').addEventListener('submit', async function (e) {
     e.preventDefault();
