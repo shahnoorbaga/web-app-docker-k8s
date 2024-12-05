@@ -20,7 +20,7 @@ spec:
         #image: backend:ica
         env:
           - name: SQL_SERVER_HOST
-            value: "34.74.254.9"
+            value: "34.72.194.121"
           - name: SQL_SERVER_DB
             value: "shahnoorappdb"
           - name: SQL_SERVER_USER
